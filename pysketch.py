@@ -6,7 +6,6 @@ screen.fill((255, 255, 255))
 pygame.display.set_caption('PySketch - Brush Size: 16')
 pygame.display.set_icon(pygame.image.load("icon.png"))
 
-pygame.display.update()
 pygame.mouse.set_cursor(pygame.cursors.diamond)
 
 drawMouse, eraseMouse= 0, 0
