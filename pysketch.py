@@ -13,7 +13,7 @@ pygame.display.set_caption('pysketch - Brush Size: 16 - Selected Colour: Black')
 pygame.display.set_icon(pygame.image.load("icon.png"))
 
 draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
-erase = pygame.transform.scale(pygame.image.load("Brushes/eraser.png"), (brushSize, brushSize))
+erase = pygame.transform.scale(pygame.image.load("Brushes/pencilWhite.png"), (brushSize, brushSize))
 
 pygame.display.update()
 
@@ -92,7 +92,7 @@ while True:
                 brushSize = brushSize + 2
 
                 draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
-                erase = pygame.transform.scale(pygame.image.load("Brushes/eraser.png"), (brushSize, brushSize))
+                erase = pygame.transform.scale(pygame.image.load("Brushes/pencilWhite.png"), (brushSize, brushSize))
                 pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
 
             elif event.button == 5:
@@ -101,13 +101,13 @@ while True:
                     brushSize = 2
 
                     draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
-                    erase = pygame.transform.scale(pygame.image.load("Brushes/eraser.png"), (brushSize, brushSize))
+                    erase = pygame.transform.scale(pygame.image.load("Brushes/pencilWhite.png"), (brushSize, brushSize))
                     pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
 
                 else:
 
                     draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
-                    erase = pygame.transform.scale(pygame.image.load("Brushes/eraser.png"), (brushSize, brushSize))
+                    erase = pygame.transform.scale(pygame.image.load("Brushes/pencilWhite.png"), (brushSize, brushSize))
                     pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
 
             pygame.display.update()
