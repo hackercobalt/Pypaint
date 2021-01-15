@@ -11,6 +11,7 @@ brushSize, counter = 16, 1
 color, colorPath = "Black", "Brushes/pencilBlack.png"
 pygame.display.set_caption('pysketch - Brush Size: 16 - Selected Colour: Black')
 pygame.display.set_icon(pygame.image.load("icon.png"))
+
 draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
 erase = pygame.transform.scale(pygame.image.load("Brushes/eraser.png"), (brushSize, brushSize))
 
@@ -75,6 +76,12 @@ while True:
                     pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
 
                 elif counter == 8:
+
+                    color, colorPath = "Brown", "Brushes/pencilBrown.png"
+                    draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
+                    pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
+
+                elif counter == 9:
                     counter = 1
 
                     color, colorPath = "Black", "Brushes/pencilBlack.png"
