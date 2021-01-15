@@ -70,7 +70,7 @@ while True:
 
                 elif counter == 7:
 
-                    color, colorPath = "Puprle", "Brushes/pencilPurple.png"
+                    color, colorPath = "Purple", "Brushes/pencilPurple.png"
                     draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
                     pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
 
@@ -94,13 +94,13 @@ while True:
                     brushSize = 2
 
                     draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
-                    erase = pygame.transform.scale(pygame.image.load("eraser.png"), (brushSize, brushSize))
+                    erase = pygame.transform.scale(pygame.image.load("Brushes/eraser.png"), (brushSize, brushSize))
                     pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
 
                 else:
 
                     draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
-                    erase = pygame.transform.scale(pygame.image.load("eraser.png"), (brushSize, brushSize))
+                    erase = pygame.transform.scale(pygame.image.load("Brushes/eraser.png"), (brushSize, brushSize))
                     pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
 
             pygame.display.update()
