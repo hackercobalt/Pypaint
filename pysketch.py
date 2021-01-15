@@ -9,9 +9,11 @@ pygame.display.set_icon(pygame.image.load("icon.png"))
 pygame.mouse.set_cursor(pygame.cursors.diamond)
 
 drawMouse, eraseMouse= 0, 0
-brushSize = 16
+brushSize, counter = 16, 1
 
-draw = pygame.transform.scale(pygame.image.load("pencil.png"), (brushSize, brushSize))
+color, colorPath = "Black", "pencilBlack.png"
+pygame.display.set_caption('pysketch - Brush Size: 16 - Selected Colour: Black')
+draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
 erase = pygame.transform.scale(pygame.image.load("eraser.png"), (brushSize, brushSize))
 
 pygame.display.update()
@@ -19,7 +21,6 @@ pygame.display.update()
 while True:
 
     x, y = pygame.mouse.get_pos()
-    pygame.display.set_caption(f'PySketch - Brush Size: {brushSize} {x, y}')
 
     for event in pygame.event.get():
 
@@ -29,28 +30,81 @@ while True:
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
 
+            if event.button == 2:
+
+                counter = counter + 1
+
+                if counter == 1:
+
+                    color, colorPath = "Black", "pencilBlack.png"
+                    draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
+                    pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
+
+                elif counter == 2:
+
+                    color, colorPath = "Red", "pencilRed.png"
+                    draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
+                    pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
+
+                elif counter == 3:
+
+                    color, colorPath = "Green", "pencilGreen.png"
+                    draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
+                    pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
+
+                elif counter == 4:
+
+                    color, colorPath = "Blue", "pencilBlue.png"
+                    draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
+                    pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
+
+                elif counter == 5:
+
+                    color, colorPath = "Yellow", "pencilYellow.png"
+                    draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
+                    pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
+
+                elif counter == 6:
+
+                    color, colorPath = "Orange", "pencilOrange.png"
+                    draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
+                    pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
+
+                elif counter == 7:
+
+                    color, colorPath = "Puprle", "pencilPurple.png"
+                    draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
+                    pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
+
+                elif counter == 8:
+                    counter = 1
+
+                    color, colorPath = "Black", "pencilBlack.png"
+                    draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
+                    pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
+
             if event.button == 4:
                 brushSize = brushSize + 2
 
-                draw = pygame.transform.scale(pygame.image.load("pencil.png"), (brushSize, brushSize))
+                draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
                 erase = pygame.transform.scale(pygame.image.load("eraser.png"), (brushSize, brushSize))
-
-                pygame.display.set_caption(f'PySketch - Brush Size: {brushSize}')
+                pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
 
             elif event.button == 5:
                 brushSize = brushSize - 2
                 if brushSize == 0:
                     brushSize = 2
 
-                    draw = pygame.transform.scale(pygame.image.load("pencil.png"), (brushSize, brushSize))
+                    draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
                     erase = pygame.transform.scale(pygame.image.load("eraser.png"), (brushSize, brushSize))
+                    pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
 
                 else:
 
-                    draw = pygame.transform.scale(pygame.image.load("pencil.png"), (brushSize, brushSize))
+                    draw = pygame.transform.scale(pygame.image.load(colorPath), (brushSize, brushSize))
                     erase = pygame.transform.scale(pygame.image.load("eraser.png"), (brushSize, brushSize))
+                    pygame.display.set_caption(f'pysketch - Brush Size: {brushSize} - Selected Colour: {color}')
 
-                pygame.display.set_caption(f'PySketch - Brush Size: {brushSize}')
             pygame.display.update()
 
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
@@ -75,9 +129,9 @@ while True:
         eraseMouse = 0
 
     if drawMouse == 1:
-        screen.blit(draw, (x - brushSize / 2  , y - brushSize / 2))
+        screen.blit(draw, (x - brushSize / 2, y - brushSize / 2))
 
     if eraseMouse == 1:
-        screen.blit(erase, (x - brushSize / 2 , y - brushSize / 2))
+        screen.blit(erase, (x - brushSize / 2, y - brushSize / 2))
 
     pygame.display.update()
