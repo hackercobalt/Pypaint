@@ -1,4 +1,4 @@
-# Pysketch
+# Pypaint
 A simple python drawing program using pygame.
 
 Controls:
