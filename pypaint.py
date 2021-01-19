@@ -1,21 +1,19 @@
 import pygame, random, sys
 
-BLACK, WHITE, RED, GREEN, BLUE = (0, 0, 0), (255, 255, 255),  (255, 0, 0), (0, 255, 0), (0, 0, 255)
+BLACK, WHITE, RED, GREEN, BLUE, YELLOW, PURPLE, CYAN = (0, 0, 0), (255, 255, 255), (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255)
+
 screen = pygame.display.set_mode((800, 600))
 screen.fill(WHITE)
 
-pygame.mouse.set_cursor(pygame.cursors.diamond)
-
 drawing, erasing= 0, 0
-brushSize, colorCounter, modeCounter = 16, 1, 1
+brushSize, colorCounter, modeCounter = 8, 1, 1
 
 brushMode, brushName = pygame.draw.circle, "Circle"
 colorName, colorCode = "Black", BLACK
 
 pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
 pygame.display.set_icon(pygame.image.load("icon.png"))
-
-pygame.display.update()
+pygame.mouse.set_cursor(pygame.cursors.diamond)
 
 while True:
 
@@ -30,21 +28,16 @@ while True:
         elif event.type == pygame.MOUSEBUTTONDOWN:
 
             if event.button == 4:
-
                 brushSize = brushSize + 2
-                pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
 
             elif event.button == 5:
                 brushSize = brushSize - 2
 
                 if brushSize == 0:
                     brushSize = 2
-                    pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
 
                 else:
-                    pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
-
-            pygame.display.update()
+                    pass
 
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             sys.exit()
@@ -60,49 +53,42 @@ while True:
 
             if modeCounter == 1:
                 brushMode, brushName = pygame.draw.circle, "Circle"
-                pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
-
 
             elif modeCounter == 2:
                 brushMode, brushName = pygame.draw.rect, "Square"
-                pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
 
             elif modeCounter == 3:
                 modeCounter = 1
                 brushMode, brushName = pygame.draw.circle, "Circle"
-                pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
 
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_c:
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_c:
 
             colorCounter = colorCounter + 1
 
             if colorCounter == 1:
-
                 colorName, colorCode = "Black", BLACK
-                pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
 
             elif colorCounter == 2:
-
                 colorName, colorCode = "Red", RED
-                pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
 
             elif colorCounter == 3:
-
                 colorName, colorCode = "Green", GREEN
-                pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
 
             elif colorCounter == 4:
-
                 colorName, colorCode = "Blue", BLUE
-                pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
 
             elif colorCounter == 5:
+                colorName, colorCode = "Yellow", YELLOW
+
+            elif colorCounter == 6:
+                colorName, colorCode = "Purple", PURPLE
+
+            elif colorCounter == 7:
+                colorName, colorCode = "Cyan", CYAN
+
+            elif colorCounter == 8:
                 colorCounter = 1
-
                 colorName, colorCode = "Black", BLACK
-                pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
-
-        pygame.display.update()
 
     if pygame.mouse.get_pressed(3)[0]:
         drawing = 1
@@ -126,4 +112,5 @@ while True:
         elif brushMode == pygame.draw.rect:
             brushMode(screen, WHITE, (pygame.Rect(x - brushSize / 2, y - brushSize / 2, brushSize, brushSize)))
 
+    pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
     pygame.display.update()
