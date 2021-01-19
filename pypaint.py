@@ -1,6 +1,6 @@
 import pygame, random, sys
 
-BLACK, WHITE, RED, GREEN, BLUE, YELLOW, PURPLE, CYAN = (0, 0, 0), (255, 255, 255), (255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255)
+BLACK, WHITE, RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE = (0, 0, 0), (255, 255, 255), (255, 0, 0), (255, 128, 0), (255, 255, 0), (0, 255, 0), (0, 255, 255), (0, 0, 255), (255, 0, 255)
 
 screen = pygame.display.set_mode((800, 600))
 screen.fill(WHITE)
@@ -11,7 +11,6 @@ brushSize, colorCounter, modeCounter = 8, 1, 1
 brushMode, brushName = pygame.draw.circle, "Circle"
 colorName, colorCode = "Black", BLACK
 
-pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
 pygame.display.set_icon(pygame.image.load("icon.png"))
 pygame.mouse.set_cursor(pygame.cursors.diamond)
 
@@ -48,7 +47,11 @@ while True:
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_TAB:
             pygame.image.save(screen, f"image{random.randint(1,999)}.jpg")
 
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_f:
+            screen.fill(colorCode)
+
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_s:
+
             modeCounter = modeCounter + 1
 
             if modeCounter == 1:
@@ -61,34 +64,42 @@ while True:
                 modeCounter = 1
                 brushMode, brushName = pygame.draw.circle, "Circle"
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_c:
-
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_x:
             colorCounter = colorCounter + 1
 
-            if colorCounter == 1:
-                colorName, colorCode = "Black", BLACK
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_z:
+            colorCounter = colorCounter - 1
 
-            elif colorCounter == 2:
-                colorName, colorCode = "Red", RED
+            if colorCounter == 0:
+                colorCounter = 8
 
-            elif colorCounter == 3:
-                colorName, colorCode = "Green", GREEN
+        if colorCounter == 1:
+            colorName, colorCode = "Black", BLACK
 
-            elif colorCounter == 4:
-                colorName, colorCode = "Blue", BLUE
+        elif colorCounter == 2:
+            colorName, colorCode = "Red", RED
 
-            elif colorCounter == 5:
-                colorName, colorCode = "Yellow", YELLOW
+        elif colorCounter == 3:
+            colorName, colorCode = "Orange", ORANGE
 
-            elif colorCounter == 6:
-                colorName, colorCode = "Purple", PURPLE
+        elif colorCounter == 4:
+            colorName, colorCode = "Yellow", YELLOW
 
-            elif colorCounter == 7:
-                colorName, colorCode = "Cyan", CYAN
+        elif colorCounter == 5:
+            colorName, colorCode = "Green", GREEN
 
-            elif colorCounter == 8:
-                colorCounter = 1
-                colorName, colorCode = "Black", BLACK
+        elif colorCounter == 6:
+            colorName, colorCode = "Cyan", CYAN
+
+        elif colorCounter == 7:
+            colorName, colorCode = "Blue", BLUE
+
+        elif colorCounter == 8:
+            colorName, colorCode = "Purple", PURPLE
+
+        elif colorCounter == 9:
+            colorCounter = 1
+            colorName, colorCode = "Black", BLACK
 
     if pygame.mouse.get_pressed(3)[0]:
         drawing = 1
