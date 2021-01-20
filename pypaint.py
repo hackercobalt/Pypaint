@@ -1,6 +1,6 @@
 import pygame, random, sys
 
-BLACK, WHITE, RED, ORANGE, YELLOW, GREEN, CYAN, BLUE, PURPLE = (0, 0, 0), (255, 255, 255), (255, 0, 0), (255, 128, 0), (255, 255, 0), (0, 255, 0), (0, 255, 255), (0, 0, 255), (255, 0, 255)
+BLACK, BLUE, LIGHTBLUE, BROWN, GRAY, GREEN, ORANGE, PINK, PURPLE, RED, WHITE, YELLOW = (0,0,0),(0,0,255),(173,216,230),(150,75,0),(128,128,128),(0,255,0),(255,165,0),(255,192,203),(160,32,240),(255,0,0),(255,255,255),(255,255,0)
 
 screen = pygame.display.set_mode((800, 600))
 screen.fill(WHITE)
@@ -61,13 +61,16 @@ while True:
                 brushMode, brushName = pygame.draw.rect, "Square"
 
             elif modeCounter == 3:
+                brushMode, brushName = pygame.draw.polygon, "Triangle"
+
+            elif modeCounter == 4:
                 modeCounter = 1
                 brushMode, brushName = pygame.draw.circle, "Circle"
 
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_x:
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_w:
             colorCounter = colorCounter + 1
 
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_z:
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_q:
             colorCounter = colorCounter - 1
 
             if colorCounter == 0:
@@ -77,27 +80,36 @@ while True:
             colorName, colorCode = "Black", BLACK
 
         elif colorCounter == 2:
-            colorName, colorCode = "Red", RED
+            colorName, colorCode = "Gray", GRAY
 
         elif colorCounter == 3:
-            colorName, colorCode = "Orange", ORANGE
+            colorName, colorCode = "Red", RED
 
         elif colorCounter == 4:
-            colorName, colorCode = "Yellow", YELLOW
+            colorName, colorCode = "Brown", BROWN
 
         elif colorCounter == 5:
-            colorName, colorCode = "Green", GREEN
+            colorName, colorCode = "Orange", ORANGE
 
         elif colorCounter == 6:
-            colorName, colorCode = "Cyan", CYAN
+            colorName, colorCode = "Yellow", YELLOW
 
         elif colorCounter == 7:
-            colorName, colorCode = "Blue", BLUE
+            colorName, colorCode = "Green", GREEN
 
         elif colorCounter == 8:
-            colorName, colorCode = "Purple", PURPLE
+            colorName, colorCode = "Light Blue", LIGHTBLUE
 
         elif colorCounter == 9:
+            colorName, colorCode = "Blue", BLUE
+
+        elif colorCounter == 10:
+            colorName, colorCode = "Pink", PINK
+
+        elif colorCounter == 11:
+            colorName, colorCode = "Purple", PURPLE
+
+        elif colorCounter == 12:
             colorCounter = 1
             colorName, colorCode = "Black", BLACK
 
@@ -116,12 +128,16 @@ while True:
             brushMode(screen, colorCode, (x,y), brushSize)
         elif brushMode == pygame.draw.rect:
             brushMode(screen, colorCode, (pygame.Rect(x - brushSize / 2, y - brushSize / 2, brushSize, brushSize)))
+        elif brushMode == pygame.draw.polygon:
+            brushMode(screen, colorCode, ((x, y - brushSize),(x - brushSize, y + brushSize),(x + brushSize, y + brushSize)))
 
     if erasing == 1:
         if brushMode == pygame.draw.circle:
             brushMode(screen, WHITE, (x,y), brushSize)
         elif brushMode == pygame.draw.rect:
             brushMode(screen, WHITE, (pygame.Rect(x - brushSize / 2, y - brushSize / 2, brushSize, brushSize)))
+        elif brushMode == pygame.draw.polygon:
+            brushMode(screen, WHITE, ((x, y - brushSize),(x - brushSize, y + brushSize),(x + brushSize, y + brushSize)))
 
     pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
     pygame.display.update()
