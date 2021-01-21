@@ -6,7 +6,7 @@ Left mouse to draw, right mouse to erase. Increase/reduce the brush size with th
 
 Change between the colors with Q and E. Change the shape with S . 
 
-Fill the screen with the selected colour with F.
+Fill the screen with the selected color with F.
 
 TAB to save your art, C to clear the screen. ESC closes the program.
 
