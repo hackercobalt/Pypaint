@@ -41,7 +41,7 @@ while True:
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
             sys.exit()
 
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_BACKSPACE:
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_c:
             screen.fill(WHITE)
 
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_TAB:
@@ -67,14 +67,14 @@ while True:
                 modeCounter = 1
                 brushMode, brushName = pygame.draw.circle, "Circle"
 
-        elif event.type == pygame.KEYDOWN and event.key == pygame.K_w:
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_e:
             colorCounter = colorCounter + 1
 
         elif event.type == pygame.KEYDOWN and event.key == pygame.K_q:
             colorCounter = colorCounter - 1
 
             if colorCounter == 0:
-                colorCounter = 8
+                colorCounter = 11
 
         if colorCounter == 1:
             colorName, colorCode = "Black", BLACK
@@ -125,19 +125,23 @@ while True:
 
     if drawing == 1:
         if brushMode == pygame.draw.circle:
-            brushMode(screen, colorCode, (x,y), brushSize)
+            brushMode(screen, colorCode, (x, y), brushSize)
+
         elif brushMode == pygame.draw.rect:
             brushMode(screen, colorCode, (pygame.Rect(x - brushSize / 2, y - brushSize / 2, brushSize, brushSize)))
+
         elif brushMode == pygame.draw.polygon:
-            brushMode(screen, colorCode, ((x, y - brushSize),(x - brushSize, y + brushSize),(x + brushSize, y + brushSize)))
+            brushMode(screen, colorCode, ((x, y - brushSize),(x - brushSize, y + brushSize / 2),(x + brushSize, y + brushSize / 2)))
 
     if erasing == 1:
         if brushMode == pygame.draw.circle:
-            brushMode(screen, WHITE, (x,y), brushSize)
+            brushMode(screen, WHITE, (x, y), brushSize)
+
         elif brushMode == pygame.draw.rect:
             brushMode(screen, WHITE, (pygame.Rect(x - brushSize / 2, y - brushSize / 2, brushSize, brushSize)))
+
         elif brushMode == pygame.draw.polygon:
-            brushMode(screen, WHITE, ((x, y - brushSize),(x - brushSize, y + brushSize),(x + brushSize, y + brushSize)))
+            brushMode(screen, WHITE, ((x, y - brushSize),(x - brushSize, y + brushSize / 2),(x + brushSize, y + brushSize / 2)))
 
     pygame.display.set_caption(f'pypaint - Brush Size: {brushSize} - Brush Color: {colorName} - Brush Shape: {brushName}')
     pygame.display.update()
